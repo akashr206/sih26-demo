@@ -1,0 +1,121 @@
+@import "tailwindcss";
+
+@theme {
+  --color-surface-container: #201f20;
+  --color-on-tertiary-fixed: #3c0700;
+  --color-on-secondary-container: #ddcdff;
+  --color-outline-variant: #3b494c;
+  --color-primary-fixed: #9cf0ff;
+  --color-primary-container: #00e5ff;
+  --color-on-surface: #e5e2e3;
+  --color-tertiary-container: #ffc2b3;
+  --color-on-tertiary-container: #aa2600;
+  --color-secondary-container: #7000ff;
+  --color-error: #ffb4ab;
+  --color-on-error: #690005;
+  --color-secondary-fixed-dim: #d1bcff;
+  --color-surface-container-low: #1c1b1c;
+  --color-inverse-surface: #e5e2e3;
+  --color-on-primary-fixed: #001f24;
+  --color-surface-container-highest: #353436;
+  --color-background: #131314;
+  --color-tertiary-fixed: #ffdad2;
+  --color-on-error-container: #ffdad6;
+  --color-surface: #131314;
+  --color-secondary: #d1bcff;
+  --color-on-secondary-fixed: #23005b;
+  --color-surface-container-high: #2a2a2b;
+  --color-inverse-on-surface: #313031;
+  --color-tertiary-fixed-dim: #ffb4a2;
+  --color-on-surface-variant: #bac9cc;
+  --color-surface-variant: #353436;
+  --color-on-tertiary-fixed-variant: #8a1d00;
+  --color-on-secondary-fixed-variant: #5700c9;
+  --color-on-primary: #00363d;
+  --color-surface-tint: #00daf3;
+  --color-on-background: #e5e2e3;
+  --color-surface-bright: #3a393a;
+  --color-surface-container-lowest: #0e0e0f;
+  --color-on-tertiary: #621100;
+  --color-error-container: #93000a;
+  --color-surface-dim: #131314;
+  --color-outline: #849396;
+  --color-on-secondary: #3c0090;
+  --color-inverse-primary: #006875;
+  --color-primary: #c3f5ff;
+  --color-tertiary: #ffe7e2;
+  --color-on-primary-fixed-variant: #004f58;
+  --color-secondary-fixed: #e9ddff;
+  --color-on-primary-container: #00626e;
+  --color-primary-fixed-dim: #00daf3;
+
+  --radius-DEFAULT: 0.125rem;
+  --radius-lg: 0.25rem;
+  --radius-xl: 0.5rem;
+  --radius-full: 0.75rem;
+
+  --spacing-stack-xs: 4px;
+  --spacing-inset-container: 24px;
+  --spacing-stack-xl: 64px;
+  --spacing-stack-md: 16px;
+  --spacing-stack-sm: 8px;
+  --spacing-gutter: 20px;
+  --spacing-stack-lg: 32px;
+
+  --font-body-md: "Inter", sans-serif;
+  --font-body-sm: "Inter", sans-serif;
+  --font-label-caps: "JetBrains Mono", monospace;
+  --font-headline-lg: "Hanken Grotesk", sans-serif;
+  --font-headline-lg-mobile: "Hanken Grotesk", sans-serif;
+  --font-display-lg: "Hanken Grotesk", sans-serif;
+}
+
+@layer base {
+  body {
+    background-color: var(--color-background);
+    color: var(--color-on-background);
+  }
+}
+
+@layer utilities {
+  .material-symbols-outlined {
+    font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+  }
+  .material-symbols-outlined[data-weight="fill"] {
+    font-variation-settings: 'FILL' 1;
+  }
+  
+  .text-body-md {
+    font-size: 16px;
+    line-height: 24px;
+    font-weight: 400;
+  }
+  .text-body-sm {
+    font-size: 14px;
+    line-height: 20px;
+    font-weight: 400;
+  }
+  .text-label-caps {
+    font-size: 12px;
+    line-height: 16px;
+    letter-spacing: 0.1em;
+    font-weight: 500;
+  }
+  .text-headline-lg {
+    font-size: 32px;
+    line-height: 40px;
+    letter-spacing: -0.01em;
+    font-weight: 600;
+  }
+  .text-headline-lg-mobile {
+    font-size: 24px;
+    line-height: 32px;
+    font-weight: 600;
+  }
+  .text-display-lg {
+    font-size: 48px;
+    line-height: 56px;
+    letter-spacing: -0.02em;
+    font-weight: 700;
+  }
+}
