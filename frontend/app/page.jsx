@@ -15,6 +15,7 @@ export default function Home() {
   const [insights, setInsights] = useState(null);
   const [selectedNode, setSelectedNode] = useState(null);
   const [error, setError] = useState(null);
+  const [isMobileSidebarOpen, setIsMobileSidebarOpen] = useState(false);
 
   useEffect(() => {
     if (activeCaseId) {
@@ -52,7 +53,12 @@ export default function Home() {
   return (
     <>
       {/* Left Sidebar: Case Management */}
-      <CaseSidebar activeCaseId={activeCaseId} onSelectCase={setActiveCaseId} />
+      <CaseSidebar 
+        activeCaseId={activeCaseId} 
+        onSelectCase={setActiveCaseId} 
+        isOpen={isMobileSidebarOpen}
+        onClose={() => setIsMobileSidebarOpen(false)}
+      />
 
       {/* Main Content Area */}
       <main className="ml-0 md:ml-20 lg:ml-64 flex-1 flex flex-col h-screen w-full">
@@ -60,7 +66,10 @@ export default function Home() {
         {/* Top App Bar */}
         <header className="h-16 border-b border-outline-variant bg-surface-container flex items-center justify-between px-inset-container shrink-0 z-30 relative">
           <div className="flex items-center gap-4">
-            <button className="md:hidden p-2 text-on-surface-variant hover:text-primary">
+            <button 
+              onClick={() => setIsMobileSidebarOpen(true)} 
+              className="md:hidden p-2 text-on-surface-variant hover:text-primary"
+            >
               <Menu className="w-6 h-6" />
             </button>
             <div className="flex items-baseline gap-3">

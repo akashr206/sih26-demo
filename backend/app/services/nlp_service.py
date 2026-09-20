@@ -8,7 +8,7 @@ from app.services.interfaces import NLPServiceInterface
 class NLPService(NLPServiceInterface):
     def __init__(self):
         # Initialize MiMo LLM via OpenAI SDK
-        api_key = os.environ.get("MIMO_API_KEY")
+        api_key = os.environ.get("MIMO_API_KEY") or os.environ.get("OPENAI_API_KEY") or "placeholder-key"
         self.client = OpenAI(
             api_key=api_key,
             base_url="https://api.xiaomimimo.com/v1"

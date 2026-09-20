@@ -1,6 +1,21 @@
+from pathlib import Path
+import os
 from dotenv import load_dotenv
-# Load environment variables from .env file BEFORE importing routes
+
+# Load environment variables from .env / .env.local file BEFORE importing routes
+base_dir = Path(__file__).resolve().parent.parent
+root_dir = base_dir.parent
+
+for env_filename in [".env.local", ".env"]:
+    env_path = root_dir / env_filename
+    if env_path.exists():
+        load_dotenv(dotenv_path=env_path)
+    env_path_base = base_dir / env_filename
+    if env_path_base.exists():
+        load_dotenv(dotenv_path=env_path_base)
+
 load_dotenv()
+
 
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware

@@ -20,22 +20,26 @@ graph_service = GraphService()
 insights_service = InsightsService()
 
 @router.post("/cases", response_model=CaseResponse)
-async def create_case(case: CaseCreate):
+def create_case(case: CaseCreate):
     try:
         new_case = case_service.create_case(case.name, case.description)
         return new_case
     except Exception as e:
+        print(f"Error creating case: {e}")
+        import traceback; traceback.print_exc()
         raise HTTPException(status_code=500, detail=str(e))
 
 @router.get("/cases", response_model=List[CaseResponse])
-async def list_cases():
+def list_cases():
     try:
         return case_service.get_all_cases()
     except Exception as e:
+        print(f"Error listing cases: {e}")
+        import traceback; traceback.print_exc()
         raise HTTPException(status_code=500, detail=str(e))
 
 @router.get("/cases/{case_id}", response_model=CaseAnalysisResponse)
-async def get_case(case_id: str):
+def get_case(case_id: str):
     try:
         case_info = case_service.get_case(case_id)
         if not case_info:
@@ -46,17 +50,20 @@ async def get_case(case_id: str):
         graph_data = graph_service.export_graph_data(networkx_graph)
         insights = insights_service.calculate_insights(networkx_graph)
         
-        # Some neo4j types need explicit string conversion for safety, but pydantic should handle it.
         return CaseAnalysisResponse(
             case_info=CaseResponse(**case_info),
             graph_data=graph_data,
             insights=insights
         )
+    except HTTPException:
+        raise
     except Exception as e:
+        print(f"Error fetching case {case_id}: {e}")
+        import traceback; traceback.print_exc()
         raise HTTPException(status_code=500, detail=str(e))
 
 @router.post("/cases/{case_id}/upload", response_model=CaseAnalysisResponse)
-async def upload_to_case(case_id: str, file: UploadFile = File(...)):
+def upload_to_case(case_id: str, file: UploadFile = File(...)):
     if not file.filename:
         raise HTTPException(status_code=400, detail="No file uploaded.")
 
@@ -85,11 +92,13 @@ async def upload_to_case(case_id: str, file: UploadFile = File(...)):
             case_service.save_graph_data(case_id, nodes, edges)
         
         # 4. Return updated Case state
-        return await get_case(case_id)
+        return get_case(case_id)
 
     except Exception as e:
         print(f"Error processing file: {e}")
+        import traceback; traceback.print_exc()
         raise HTTPException(status_code=500, detail=str(e))
     finally:
         if os.path.exists(temp_dir):
             shutil.rmtree(temp_dir)
+
