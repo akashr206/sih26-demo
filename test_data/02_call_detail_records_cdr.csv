@@ -1,0 +1,5 @@
+call_id,timestamp,caller_name,caller_phone,receiver_name,receiver_phone,call_duration_sec,cell_tower_location,notes
+CDR-501,2026-03-11 21:14:02,Rajesh Sharma,+91-9811223344,Farhan Qureshi,+91-9877001122,240,Okhla Industrial Area,Confirmed arrival of consignment vehicle DL-04-CX-9821
+CDR-502,2026-03-11 21:25:40,Farhan Qureshi,+91-9877001122,Vikram Malhotra,+91-9899445566,380,South Extension Delhi,Briefed kingpin on cargo delivery and clearance
+CDR-503,2026-03-12 08:30:15,Farhan Qureshi,+91-9877001122,Kavita Singhania,+91-9822334455,195,Nariman Point Mumbai,Requested hawala release for warehouse operations
+CDR-504,2026-03-12 11:45:00,Vikram Malhotra,+91-9899445566,Kabir Rawat,+91-9844556677,410,Goa Beach Safehouse,Ordered armed security backup for Goa and Delhi facilities

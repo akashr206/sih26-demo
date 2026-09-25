@@ -1,0 +1,4 @@
+record_id,incident_date,suspect_name,role,alias,gang_affiliation,phone_number,vehicle_plate,crime_location,contraband_seized,accomplice_named
+REC-101,2026-03-12,Rajesh Sharma,Driver and Transporter,Raju,Red Lotus Syndicate,+91-9811223344,DL-04-CX-9821,Okhla Industrial Warehouse 12,45kg Heroin,Farhan Qureshi
+REC-102,2026-03-12,Rajesh Sharma,Driver and Transporter,Raju,Red Lotus Syndicate,+91-9811223344,DL-04-CX-9821,Okhla Industrial Warehouse 12,Encrypted Satellite Phone,Vikram Malhotra
+REC-103,2026-03-13,Farhan Qureshi,Logistics Coordinator,The Fixer,Red Lotus Syndicate,+91-9877001122,DL-04-CX-9821,Okhla Industrial Warehouse 12,Forged Transport Waybills,Vikram Malhotra

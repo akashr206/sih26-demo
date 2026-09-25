@@ -1,0 +1,4 @@
+raid_id,raid_date,raid_location,arrested_suspect,alias,syndicate,assigned_vehicle,recovered_phone,contraband_type,direct_handler
+RAID-301,2026-03-16,Goa Beach Safehouse,Kabir Rawat,Blade,Red Lotus Syndicate,DL-04-CX-9821,+91-9844556677,9mm Pistols and AK Ammunition,Vikram Malhotra
+RAID-302,2026-03-16,Goa Beach Safehouse,Kabir Rawat,Blade,Red Lotus Syndicate,MH-02-AK-4412,+91-9844556677,Night Vision Equipment,Farhan Qureshi
+RAID-303,2026-03-17,Goa Beach Safehouse,Rajesh Sharma,Raju,Red Lotus Syndicate,DL-04-CX-9821,+91-9811223344,Smuggled Fuel and Navigation GPS,Kabir Rawat
