@@ -10,6 +10,7 @@ from app.services.ocr_service import OCRService
 from app.services.nlp_service import NLPService
 from app.services.graph_service import GraphService
 from app.services.insights_service import InsightsService
+from app.services.narrative_service import NarrativeService
 
 router = APIRouter()
 
@@ -18,6 +19,7 @@ ocr_service = OCRService()
 nlp_service = NLPService()
 graph_service = GraphService()
 insights_service = InsightsService()
+narrative_service = NarrativeService()
 
 @router.post("/cases", response_model=CaseResponse)
 def create_case(case: CaseCreate):
@@ -49,16 +51,32 @@ def get_case(case_id: str):
         networkx_graph = graph_service.build_networkx_graph(nodes, edges)
         graph_data = graph_service.export_graph_data(networkx_graph)
         insights = insights_service.calculate_insights(networkx_graph)
+        narrative = narrative_service.generate_narrative(graph_data, insights, case_id)
         
         return CaseAnalysisResponse(
             case_info=CaseResponse(**case_info),
             graph_data=graph_data,
-            insights=insights
+            insights=insights,
+            narrative=narrative,
         )
     except HTTPException:
         raise
     except Exception as e:
         print(f"Error fetching case {case_id}: {e}")
+        import traceback; traceback.print_exc()
+        raise HTTPException(status_code=500, detail=str(e))
+
+@router.delete("/cases/{case_id}")
+def delete_case(case_id: str):
+    try:
+        deleted = case_service.delete_case(case_id)
+        if not deleted:
+            raise HTTPException(status_code=404, detail="Case not found")
+        return {"success": True, "message": f"Case {case_id} deleted successfully"}
+    except HTTPException:
+        raise
+    except Exception as e:
+        print(f"Error deleting case {case_id}: {e}")
         import traceback; traceback.print_exc()
         raise HTTPException(status_code=500, detail=str(e))
 

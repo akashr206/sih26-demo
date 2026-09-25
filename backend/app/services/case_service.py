@@ -36,6 +36,7 @@ class CaseService:
                     self._in_memory_cases[case_id] = case_data
                     return case_data
         except Exception as e:
+            neo4j_client.mark_failed(e)
             print(f"[CaseService Warning] Neo4j query failed ({e}). Falling back to in-memory store.")
 
         # Fallback to in-memory store
@@ -63,6 +64,7 @@ class CaseService:
                 if cases:
                     return cases
         except Exception as e:
+            neo4j_client.mark_failed(e)
             print(f"[CaseService Warning] Neo4j get_all_cases failed ({e}). Using in-memory fallback.")
 
         # Return from in-memory fallback
@@ -81,9 +83,30 @@ class CaseService:
                 if record:
                     return self._parse_case_node(record["c"])
         except Exception as e:
+            neo4j_client.mark_failed(e)
             print(f"[CaseService Warning] Neo4j get_case failed ({e}). Checking in-memory store.")
 
         return self._in_memory_cases.get(case_id, {})
+
+    def delete_case(self, case_id: str) -> bool:
+        existed = case_id in self._in_memory_cases
+        # Delete from in-memory store
+        self._in_memory_cases.pop(case_id, None)
+        self._in_memory_nodes.pop(case_id, None)
+        self._in_memory_edges.pop(case_id, None)
+
+        # Delete from Neo4j if available
+        if neo4j_client.is_available:
+            try:
+                with neo4j_client.get_session() as session:
+                    session.run("MATCH (c:Case {id: $case_id}) DETACH DELETE c", case_id=case_id)
+                    session.run("MATCH (e:Entity {case_id: $case_id}) DETACH DELETE e", case_id=case_id)
+                    return True
+            except Exception as e:
+                neo4j_client.mark_failed(e)
+                print(f"[CaseService Warning] Neo4j delete_case failed ({e}).")
+
+        return existed
 
     def save_graph_data(self, case_id: str, nodes: List[Node], edges: List[Edge]):
         # Save to in-memory fallback first
@@ -143,6 +166,7 @@ class CaseService:
                     """
                     session.run(edge_query, source_id=edge.source, target_id=edge.target, case_id=case_id, relation=edge.relation, weight=edge.weight)
         except Exception as e:
+            neo4j_client.mark_failed(e)
             print(f"[CaseService Warning] Neo4j save_graph_data failed ({e}). Data persisted in memory.")
 
     def load_graph_data(self, case_id: str) -> Tuple[List[Node], List[Edge]]:
@@ -179,6 +203,7 @@ class CaseService:
                 if nodes or edges:
                     return nodes, edges
         except Exception as e:
+            neo4j_client.mark_failed(e)
             print(f"[CaseService Warning] Neo4j load_graph_data failed ({e}). Loading from in-memory fallback.")
 
         return self._in_memory_nodes.get(case_id, []), self._in_memory_edges.get(case_id, [])

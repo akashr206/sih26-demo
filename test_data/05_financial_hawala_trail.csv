@@ -1,0 +1,4 @@
+transaction_id,transfer_date,origin_entity,sender_name,sender_phone,beneficiary_name,beneficiary_phone,settlement_location,commission_broker,associated_organization
+HAW-701,2026-03-17,Singhania Jewellers,Kavita Singhania,+91-9822334455,Vikram Malhotra,+91-9899445566,Nariman Point Mumbai,Farhan Qureshi,Red Lotus Syndicate
+HAW-702,2026-03-18,Singhania Jewellers,Kavita Singhania,+91-9822334455,Farhan Qureshi,+91-9877001122,Okhla Industrial Warehouse 12,Farhan Qureshi,Red Lotus Syndicate
+HAW-703,2026-03-19,Malhotra Enterprises,Vikram Malhotra,+91-9899445566,Kabir Rawat,+91-9844556677,Goa Beach Safehouse,Farhan Qureshi,Red Lotus Syndicate

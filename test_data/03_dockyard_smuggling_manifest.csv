@@ -1,0 +1,4 @@
+manifest_id,inspection_date,dock_location,consignee_entity,authorized_person,phone_number,transport_vehicle,dispatch_destination,intermediary_agent,cartel_reference
+MNF-201,2026-03-14,Mumbai Dock Berth 7,Singhania Jewellers,Kavita Singhania,+91-9822334455,MH-02-AK-4412,Okhla Industrial Warehouse 12,Farhan Qureshi,Red Lotus Syndicate
+MNF-202,2026-03-14,Mumbai Dock Berth 7,Singhania Jewellers,Kavita Singhania,+91-9822334455,DL-04-CX-9821,Goa Beach Safehouse,Farhan Qureshi,Red Lotus Syndicate
+MNF-203,2026-03-15,Mumbai Dock Berth 7,Malhotra Enterprises,Vikram Malhotra,+91-9899445566,MH-02-AK-4412,Mumbai Dock Berth 7,Farhan Qureshi,Red Lotus Syndicate
