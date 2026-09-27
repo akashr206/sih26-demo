@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const api = axios.create({
-  baseURL: 'http://localhost:8000/api',
+  baseURL: process.env.NEXT_PUBLIC_BACKEND_URL || 'http://localhost:8000/api',
   timeout: 30000, // 30 second timeout (LLM narrative generation)
 });
 
@@ -23,12 +23,12 @@ export const getCaseDetails = async (caseId) => {
 export const uploadToCase = async (caseId, file) => {
   const formData = new FormData();
   formData.append('file', file);
-  
+
   const response = await api.post(`/cases/${caseId}/upload`, formData, {
     headers: { 'Content-Type': 'multipart/form-data' },
     timeout: 60000 // Extended timeout for heavy analysis tasks
   });
-  
+
   return response.data;
 };
 
