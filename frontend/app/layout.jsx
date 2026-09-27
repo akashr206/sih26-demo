@@ -1,7 +1,7 @@
 import "./globals.css";
 
 export const metadata = {
-  title: "Vanguard Analytics - Intelligence Dashboard",
+  title: "Chanakya - Intelligence Dashboard",
   description: "Advanced investigation dashboard for analyzing criminal networks.",
 };
 

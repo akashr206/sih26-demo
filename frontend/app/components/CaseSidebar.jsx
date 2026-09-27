@@ -109,7 +109,7 @@ export default function CaseSidebar({
                 transition={{ duration: 0.15 }}
                 className="overflow-hidden min-w-0"
               >
-                <h1 className="text-[18px] font-bold text-primary truncate leading-tight whitespace-nowrap">Intelligence</h1>
+                <h1 className="text-[18px] font-bold text-primary truncate leading-tight whitespace-nowrap">Chanakya</h1>
                 <p className="text-[10px] text-on-surface-variant truncate whitespace-nowrap">Network Analytics</p>
               </motion.div>
             )}
